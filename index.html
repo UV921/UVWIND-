@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>uvwind — CSS without the CSS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">
+      <span class="brand-mark">UV</span>
+      <span class="brand-name">wind</span>
+    </a>
+    <div class="nav-center">
+      <a href="#why">Why</a>
+      <a href="#playground">Playground</a>
+      <a href="#docs">Docs</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-version">v0.1.0</span>
+      <a href="" target="_blank" class="nav-gh">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-theme" id="themeBtn" onclick="toggleTheme()">
+        <svg class="sun-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="moon-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-noise"></div>
+
+    <!-- Left -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Funded by ChaiCode
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="line-1">CSS</span>
+        <span class="line-2">without<br/>the CSS.</span>
+      </h1>
+
+      <p class="hero-desc">
+        uvwind scans your HTML, injects a <code>&lt;style&gt;</code> tag at runtime.
+        No build step. No CSS file ever generated. Just add a class — it works.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#docs" class="cta-primary">Get started →</a>
+        <a href="#playground" class="cta-ghost">Try playground</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">4kb</span>
+          <span class="stat-label">gzipped</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">0</span>
+          <span class="stat-label">CSS files</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">0</span>
+          <span class="stat-label">build steps</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right — animated code editor -->
+    <div class="hero-right">
+      <div class="editor">
+        <div class="editor-titlebar">
+          <div class="editor-dots">
+            <span class="ed-dot red"></span>
+            <span class="ed-dot yellow"></span>
+            <span class="ed-dot green"></span>
+          </div>
+          <span class="editor-filename">index.html</span>
+          <span class="editor-lang">HTML</span>
+        </div>
+
+        <div class="editor-body">
+          <div class="editor-lines" id="editor-lines">
+            <span>1</span><span>2</span><span>3</span>
+            <span>4</span><span>5</span><span>6</span>
+            <span>7</span><span>8</span><span>9</span>
+            <span>10</span><span>11</span><span>12</span>
+          </div>
+          <div class="editor-code" id="editor-code">
+            <div class="code-line"><span class="ec-comment">&lt;!-- 1. Add uvwind --&gt;</span></div>
+            <div class="code-line"><span class="ec-tag">&lt;script</span> <span class="ec-attr">src=</span><span class="ec-str">"uvwind.js"</span><span class="ec-tag">&gt;&lt;/script&gt;</span></div>
+            <div class="code-line">&nbsp;</div>
+            <div class="code-line"><span class="ec-comment">&lt;!-- 2. Use classes --&gt;</span></div>
+            <div class="code-line typed-line">
+              <span class="ec-tag">&lt;div</span>
+              <span class="ec-attr"> class=</span><span class="ec-str">"<span id="typed-classes"></span>"</span>
+              <span class="ec-tag">&gt;</span>
+            </div>
+            <div class="code-line"><span class="ec-muted">&nbsp;&nbsp;Hello world</span></div>
+            <div class="code-line"><span class="ec-tag">&lt;/div&gt;</span></div>
+            <div class="code-line">&nbsp;</div>
+            <div class="code-line"><span class="ec-comment">&lt;!-- 3. uvwind injects: --&gt;</span></div>
+            <div class="code-line"><span class="ec-tag">&lt;style</span> <span class="ec-attr">id=</span><span class="ec-str">"uvwind"</span><span class="ec-tag">&gt;</span></div>
+            <div class="code-line injected-line" id="injected-css">
+              &nbsp;&nbsp;<span class="ec-prop" id="inject-prop">waiting...</span>
+            </div>
+            <div class="code-line"><span class="ec-tag">&lt;/style&gt;</span></div>
+          </div>
+        </div>
+
+        <!-- live preview strip -->
+        <div class="editor-preview">
+          <span class="preview-label">LIVE PREVIEW</span>
+          <div class="preview-box" id="preview-box">Hello world</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>no CSS file</span><span class="dot">·</span>
+      <span>DOM injection</span><span class="dot">·</span>
+      <span>4kb gzipped</span><span class="dot">·</span>
+      <span>VS Code IntelliSense</span><span class="dot">·</span>
+      <span>zero build step</span><span class="dot">·</span>
+      <span>hover states</span><span class="dot">·</span>
+      <span>glass effect</span><span class="dot">·</span>
+      <span>npm + CDN</span><span class="dot">·</span>
+      <span>no CSS file</span><span class="dot">·</span>
+      <span>DOM injection</span><span class="dot">·</span>
+      <span>4kb gzipped</span><span class="dot">·</span>
+      <span>VS Code IntelliSense</span><span class="dot">·</span>
+      <span>zero build step</span><span class="dot">·</span>
+      <span>hover states</span><span class="dot">·</span>
+      <span>glass effect</span><span class="dot">·</span>
+      <span>npm + CDN</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <section class="why-section" id="why">
+    <div class="container">
+      <div class="section-label">// why uvwind</div>
+      <h2 class="section-title">Built different.<br/>Works everywhere.</h2>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-number">01</div>
+          <h3>No CSS file. Ever.</h3>
+          <p>Tailwind generates a .css file at build time. uvwind injects a &lt;style&gt; tag at runtime. Open DevTools — no stylesheet. Just inline JS magic.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-number">02</div>
+          <h3>Single DOM scan.</h3>
+          <p>On load, uvwind scans your entire DOM once, collects every class used, builds the CSS string, injects it. 500 classes = 1 scan. Not 500.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-number">03</div>
+          <h3>Works with React, Vue, vanilla.</h3>
+          <p>MutationObserver watches for dynamic class changes. Add a class via JS after load — uvwind catches it and styles it instantly.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-number">04</div>
+          <h3>Glass effect built in.</h3>
+          <p>bg-glass, bg-glass-dark, bg-glass-chai. Glassmorphism with one class. No Tailwind plugin needed. Unique to uvwind.</p>
+        </div>
+      </div>
+
+      <!-- diff table -->
+      <div class="diff-table">
+        <div class="diff-header">
+          <span>Feature</span>
+          <span class="col-uv">uvwind</span>
+          <span class="col-tw">Tailwind</span>
+        </div>
+        <div class="diff-row">
+          <span>CSS file generated</span>
+          <span class="col-uv bad">No ✓</span>
+          <span class="col-tw bad2">Yes ✗</span>
+        </div>
+        <div class="diff-row">
+          <span>Build step required</span>
+          <span class="col-uv bad">No ✓</span>
+          <span class="col-tw bad2">Yes ✗</span>
+        </div>
+        <div class="diff-row">
+          <span>Works in plain HTML</span>
+          <span class="col-uv bad">Yes ✓</span>
+          <span class="col-tw bad2">Limited ✗</span>
+        </div>
+        <div class="diff-row">
+          <span>Dynamic class support</span>
+          <span class="col-uv bad">Yes ✓</span>
+          <span class="col-tw bad2">No ✗</span>
+        </div>
+        <div class="diff-row">
+          <span>Glass effect built in</span>
+          <span class="col-uv bad">Yes ✓</span>
+          <span class="col-tw bad2">No ✗</span>
+        </div>
+        <div class="diff-row">
+          <span>VS Code IntelliSense</span>
+          <span class="col-uv bad">Yes ✓</span>
+          <span class="col-tw bad2">Plugin ✗</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYGROUND -->
+  <section class="pg-section" id="playground">
+    <div class="container">
+      <div class="section-label">// interactive playground</div>
+      <h2 class="section-title">Try it. Break it. Ship it.</h2>
+      <p class="section-sub">Type classes. Watch the style tag get injected. Open DevTools to verify — no CSS file, just a &lt;style&gt; tag in &lt;head&gt;.</p>
+
+      <div class="pg-layout">
+        <div class="pg-controls">
+          <input
+            id="pg-input"
+            type="text"
+            placeholder="bg-red-5 p-4 rounded-lg text-white font-bold"
+            oninput="runPG()"
+            autocomplete="off"
+            spellcheck="false"
+          />
+
+          <div class="pg-chip-groups">
+            <div class="chip-group-label">Colors</div>
+            <div class="chip-group">
+              <span onclick="chip(this)">bg-red-5</span>
+              <span onclick="chip(this)">bg-blue-5</span>
+              <span onclick="chip(this)">bg-green-5</span>
+              <span onclick="chip(this)">bg-orange-5</span>
+              <span onclick="chip(this)">bg-purple-5</span>
+            </div>
+            <div class="chip-group-label">Spacing</div>
+            <div class="chip-group">
+              <span onclick="chip(this)">p-2</span>
+              <span onclick="chip(this)">p-4</span>
+              <span onclick="chip(this)">p-8</span>
+            </div>
+            <div class="chip-group-label">Effects</div>
+            <div class="chip-group">
+              <span onclick="chip(this)">bg-glass</span>
+              <span onclick="chip(this)">bg-glass-dark</span>
+              <span onclick="chip(this)">rounded-lg</span>
+              <span onclick="chip(this)">rounded-full</span>
+              <span onclick="chip(this)">shadow-lg</span>
+              <span onclick="chip(this)">font-bold</span>
+              <span onclick="chip(this)">text-white</span>
+              <span onclick="chip(this)">uppercase</span>
+            </div>
+          </div>
+
+          <div class="pg-proof">
+            <div class="proof-label">injected &lt;style&gt; tag:</div>
+            <code id="pg-injected">// apply classes to see injection</code>
+          </div>
+        </div>
+
+        <div class="pg-preview">
+          <div class="pg-canvas">
+            <div class="pg-orb pg-o1"></div>
+            <div class="pg-orb pg-o2"></div>
+            <div class="pg-orb pg-o3"></div>
+            <div id="pg-box">uvwind box</div>
+          </div>
+          <div class="pg-devtools">
+            <div class="dt-bar">
+              <span class="dt-dot"></span>
+              <span class="dt-dot"></span>
+              <span class="dt-dot"></span>
+              <span class="dt-title">DevTools — Elements</span>
+            </div>
+            <div class="dt-body">
+              <div class="dt-line">
+                <span class="dt-tag">&lt;head&gt;</span>
+              </div>
+              <div class="dt-line indent">
+                <span class="dt-tag">&lt;style</span>
+                <span class="dt-attr"> id=</span>
+                <span class="dt-str">"uvwind"</span>
+                <span class="dt-tag">&gt;</span>
+              </div>
+              <div class="dt-line indent2" id="dt-css">
+                <span class="dt-muted">// empty</span>
+              </div>
+              <div class="dt-line indent">
+                <span class="dt-tag">&lt;/style&gt;</span>
+              </div>
+              <div class="dt-line">
+                <span class="dt-tag">&lt;/head&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCS -->
+  <section class="docs-section" id="docs">
+    <div class="container">
+      <div class="section-label">// get started</div>
+      <h2 class="section-title">Ship in 30 seconds.</h2>
+
+      <div class="install-row">
+        <button class="install-tab active" id="t-cdn" onclick="tab('cdn')">CDN</button>
+        <button class="install-tab" id="t-npm" onclick="tab('npm')">NPM</button>
+      </div>
+
+      <div class="code-block" id="b-cdn">
+        <div class="cb-header">
+          <span>index.html</span>
+          <button onclick="copy('c-cdn')">Copy</button>
+        </div>
+        <pre id="c-cdn"><span class="ec-comment">&lt;!-- drop in &lt;head&gt;, nothing else needed --&gt;</span>
+<span class="ec-tag">&lt;script</span> <span class="ec-attr">src=</span><span class="ec-str">"https://cdn.jsdelivr.net/gh/uvesh/uvwind/uvwind.min.js"</span><span class="ec-tag">&gt;&lt;/script&gt;</span>
+
+<span class="ec-comment">&lt;!-- use classes anywhere --&gt;</span>
+<span class="ec-tag">&lt;div</span> <span class="ec-attr">class=</span><span class="ec-str">"bg-red-5 p-4 rounded-lg text-white"</span><span class="ec-tag">&gt;</span>
+  Hello uvwind
+<span class="ec-tag">&lt;/div&gt;</span></pre>
+      </div>
+
+      <div class="code-block hidden" id="b-npm">
+        <div class="cb-header">
+          <span>terminal</span>
+          <button onclick="copy('c-npm')">Copy</button>
+        </div>
+        <pre id="c-npm"><span class="ec-comment"># install</span>
+npm install uvwind
+
+<span class="ec-comment"># import — auto runs, no config</span>
+<span class="ec-tag">import</span> <span class="ec-str">'uvwind'</span></pre>
+      </div>
+
+      <!-- class reference -->
+      <div class="ref-grid">
+        <div class="ref-card">
+          <div class="ref-head">Spacing</div>
+          <div class="ref-rows">
+            <div class="ref-row"><code>p-1</code><span>padding: 4px</span></div>
+            <div class="ref-row"><code>p-2</code><span>padding: 8px</span></div>
+            <div class="ref-row"><code>p-4</code><span>padding: 16px</span></div>
+            <div class="ref-row"><code>p-8</code><span>padding: 32px</span></div>
+            <div class="ref-row"><code>m-4</code><span>margin: 16px</span></div>
+          </div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-head">Colors</div>
+          <div class="ref-rows">
+            <div class="ref-row"><code>bg-red-5</code><span style="color:#f43f5e">■</span></div>
+            <div class="ref-row"><code>bg-blue-5</code><span style="color:#3b82f6">■</span></div>
+            <div class="ref-row"><code>bg-green-5</code><span style="color:#22c55e">■</span></div>
+            <div class="ref-row"><code>bg-orange-5</code><span style="color:#f97316">■</span></div>
+            <div class="ref-row"><code>bg-*-1 to 10</code><span>10 shades each</span></div>
+          </div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-head">Typography</div>
+          <div class="ref-rows">
+            <div class="ref-row"><code>text-white</code><span>color: #fff</span></div>
+            <div class="ref-row"><code>font-bold</code><span>weight: 700</span></div>
+            <div class="ref-row"><code>text-xl</code><span>size: 1.25rem</span></div>
+            <div class="ref-row"><code>uppercase</code><span>transform: upper</span></div>
+            <div class="ref-row"><code>italic</code><span>style: italic</span></div>
+          </div>
+        </div>
+        <div class="ref-card ref-highlight">
+          <div class="ref-head">Glass ✦</div>
+          <div class="ref-rows">
+            <div class="ref-row"><code>bg-glass</code><span>frosted light</span></div>
+            <div class="ref-row"><code>bg-glass-dark</code><span>frosted dark</span></div>
+            <div class="ref-row"><code>bg-glass-lg</code><span>heavy blur</span></div>
+            <div class="ref-row"><code>bg-glass-chai</code><span>orange tint</span></div>
+            <div class="ref-row more">unique to uvwind</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark">UV</span>
+        <span class="brand-name">wind</span>
+        <span class="footer-tag">CSS without the CSS.</span>
+      </div>
+      <div class="footer-links">
+        <span class="version-pill">v0.1.0</span>
+        <a href="https://github.com" target="_blank">GitHub</a>
+        <a href="#docs">Docs</a>
+      </div>
+      <div class="footer-credit">Made by Uvesh 🍵 at ChaiCode</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
